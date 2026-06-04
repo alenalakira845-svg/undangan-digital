@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Birthday Invitation - Pink Envelope | May 26, 2027</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ffb7c5 0%, #ff6f9e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Background balloons */
+        .bg-deco {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .balloon {
+            position: absolute;
+            bottom: -80px;
+            font-size: clamp(24px, 6vw, 40px);
+            animation: floatUp 10s ease-in infinite;
+            opacity: 0.6;
+            will-change: transform;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.5; }
+            100% { transform: translateY(-120vh) rotate(15deg); opacity: 0; }
+        }
+
+        /* Container utama - memastikan semua konten di tengah */
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* ========== ENVELOPE - PERFECTLY CENTERED ========== */
+        .envelope-wrapper {
+            position: relative;
+            z-index: 20;
+            width: 100%;
+            max-width: min(520px, 90%);
+            margin: 0 auto;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .envelope {
+            background: #ffd9e6;
+            border-radius: clamp(15px, 5vw, 25px) clamp(15px, 5vw, 25px) clamp(12px, 4vw, 18px) clamp(12px, 4vw, 18px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.25), 0 0 0 6px rgba(255,255,255,0.5), 0 0 0 10px rgba(255,105,180,0.3);
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            animation: fadeInScale 0.7s ease-out;
+            width: 100%;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .envelope-top {
+            background: linear-gradient(135deg, #ffb7cb, #ff9abe);
+            height: clamp(140px, 35vw, 190px);
+            position: relative;
+            clip-path: polygon(0% 0%, 100% 0%, 50% 78%);
+        }
+
+        .envelope-body {
+            background: linear-gradient(145deg, #fff5f8, #ffeef4);
+            padding: clamp(20px, 6vw, 35px) clamp(15px, 5vw, 25px) clamp(25px, 7vw, 40px);
+            text-align: center;
+            color: #b34180;
+            font-weight: 500;
+        }
+
+        .envelope-body i {
+            font-size: clamp(42px, 12vw, 62px);
+            background: white;
+            padding: clamp(12px, 4vw, 20px);
+            border-radius: 50%;
+            color: #ff4d8c;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            margin-bottom: clamp(12px, 4vw, 20px);
+        }
+
+        .envelope-body h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(24px, 7vw, 36px);
+            color: #ff3388;
+            margin: 12px 0 5px;
+        }
+
+        .envelope-body p {
+            font-size: clamp(14px, 4vw, 17px);
+            margin-bottom: 8px;
+            color: #c95a8f;
+        }
+
+        .open-hint {
+            margin-top: clamp(15px, 5vw, 25px);
+            font-size: clamp(13px, 3.5vw, 15px);
+            background: linear-gradient(95deg, #ff77aa, #ff99cc);
+            display: inline-block;
+            padding: clamp(8px, 2.5vw, 10px) clamp(20px, 6vw, 30px);
+            border-radius: 50px;
+            animation: pulse 1.5s infinite;
+            font-weight: 600;
+            color: white;
+            box-shadow: 0 5px 15px rgba(255,51,136,0.3);
+        }
+
+        .open-hint i {
+            font-size: clamp(12px, 3vw, 14px);
+            background: transparent;
+            padding: 0;
+            box-shadow: none;
+            color: white;
+            margin: 0 5px 0 0;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.05); opacity: 1; }
+        }
+
+        /* Invitation Card */
+        .invitation-card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: clamp(30px, 8vw, 55px);
+            overflow: hidden;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.25), 0 0 0 6px rgba(255,230,240,0.9);
+            transform: scale(0.95);
+            opacity: 0;
+            transition: all 0.5s ease;
+            pointer-events: none;
+            backdrop-filter: blur(3px);
+            max-width: min(600px, 95%);
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .invitation-card.active {
+            transform: scale(1);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .envelope-wrapper.hide-envelope {
+            display: none;
+        }
+
+        /* Card Header */
+        .card-header {
+            background: linear-gradient(145deg, #ff99cc, #ff66b2);
+            padding: clamp(20px, 7vw, 35px) clamp(15px, 5vw, 20px) clamp(15px, 5vw, 25px);
+            text-align: center;
+            color: white;
+        }
+
+        .card-header i {
+            font-size: clamp(45px, 13vw, 70px);
+            background: white;
+            padding: clamp(12px, 4vw, 20px);
+            border-radius: 50%;
+            color: #ff4d8c;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .card-header h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(32px, 9vw, 54px);
+            margin: 10px 0;
+            text-shadow: 2px 2px 0 #d63384;
+        }
+
+        .card-header p {
+            font-size: clamp(14px, 4vw, 18px);
+            letter-spacing: 0.5px;
+        }
+
+        .age-badge {
+            background: #fff0f5;
+            width: fit-content;
+            margin: -20px auto 0;
+            padding: clamp(6px, 2vw, 10px) clamp(20px, 7vw, 40px);
+            border-radius: 60px;
+            font-size: clamp(20px, 6vw, 30px);
+            font-weight: bold;
+            font-family: 'Dancing Script', cursive;
+            color: #ff3388;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Info Grid */
+        .info-grid {
+            background: #fffafc;
+            border-radius: clamp(25px, 6vw, 45px);
+            margin: 20px 0;
+            padding: 8px 12px;
+            box-shadow: inset 0 0 0 2px white, 0 10px 25px rgba(255,105,180,0.15);
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            gap: clamp(12px, 4vw, 18px);
+            padding: clamp(12px, 3.5vw, 18px) clamp(8px, 3vw, 10px);
+            border-bottom: 1px dashed #ffcddf;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-icon {
+            width: clamp(45px, 12vw, 55px);
+            height: clamp(45px, 12vw, 55px);
+            background: #ffeef4;
+            border-radius: clamp(20px, 6vw, 30px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(22px, 6vw, 28px);
+            color: #ff66b2;
+            flex-shrink: 0;
+        }
+
+        .info-detail {
+            flex: 1;
+        }
+
+        .info-label {
+            font-size: clamp(10px, 3vw, 13px);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #e07a9e;
+        }
+
+        .info-value {
+            font-size: clamp(14px, 4vw, 18px);
+            font-weight: 600;
+            color: #5c2e46;
+            line-height: 1.3;
+            word-break: break-word;
+        }
+
+        .dresscode-badge {
+            background: #ffecf0;
+            border-radius: 50px;
+            padding: 4px 12px;
+            font-weight: 700;
+            color: #d63384;
+            font-size: clamp(11px, 3vw, 14px);
+            display: inline-block;
+            margin-top: 4px;
+        }
+
+        /* RSVP Button */
+        .rsvp-btn {
+            background: linear-gradient(95deg, #ff77aa, #ff3388);
+            border: none;
+            width: 100%;
+            padding: clamp(14px, 4.5vw, 18px);
+            font-size: clamp(16px, 4.5vw, 20px);
+            font-weight: bold;
+            color: white;
+            border-radius: 50px;
+            margin: 15px 0;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .rsvp-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Countdown */
+        .countdown-box {
+            background: #ffe8f0;
+            border-radius: clamp(25px, 6vw, 45px);
+            padding: clamp(12px, 4vw, 15px);
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .countdown-box > div:first-child {
+            font-size: clamp(12px, 3.5vw, 14px);
+        }
+
+        .timer {
+            display: flex;
+            justify-content: space-evenly;
+            gap: 6px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .timer-block {
+            background: white;
+            border-radius: clamp(15px, 4vw, 25px);
+            padding: clamp(6px, 2vw, 8px) clamp(8px, 2.5vw, 12px);
+            min-width: clamp(55px, 15vw, 70px);
+            text-align: center;
+        }
+
+        .timer-num {
+            font-size: clamp(20px, 6vw, 28px);
+            font-weight: 800;
+            color: #ff3388;
+        }
+
+        .timer-label {
+            font-size: clamp(10px, 3vw, 12px);
+            font-weight: 500;
+            color: #b35a7c;
+        }
+
+        /* Note */
+        .note-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: clamp(11px, 3.5vw, 13px);
+            color: #c97a9a;
+            background: #fff5f8;
+            padding: clamp(10px, 3vw, 12px);
+            border-radius: 30px;
+        }
+
+        /* Footer */
+        .card-footer {
+            background: #ffeef4;
+            text-align: center;
+            padding: clamp(12px, 4vw, 15px);
+            font-size: clamp(11px, 3.5vw, 13px);
+            color: #b35a7c;
+            border-top: 2px dashed #ffcddf;
+        }
+
+        /* Modals */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+            z-index: 200;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+        }
+
+        .modal-card {
+            background: white;
+            max-width: 350px;
+            width: 90%;
+            border-radius: clamp(30px, 8vw, 50px);
+            padding: clamp(20px, 6vw, 30px) clamp(15px, 5vw, 20px);
+            text-align: center;
+        }
+
+        .modal-card i {
+            font-size: clamp(40px, 12vw, 55px);
+            color: #ff66b2;
+            margin-bottom: 10px;
+        }
+
+        .modal-card h3 {
+            color: #d63384;
+            margin-bottom: 10px;
+            font-size: clamp(18px, 5vw, 22px);
+        }
+
+        .modal-card p {
+            font-size: clamp(13px, 4vw, 14px);
+        }
+
+        .modal-card input {
+            width: 85%;
+            padding: clamp(10px, 3.5vw, 12px);
+            margin: 15px 0;
+            border: 2px solid #ffbbd0;
+            border-radius: 60px;
+            font-size: clamp(14px, 4vw, 16px);
+            text-align: center;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-pink {
+            background: #ff77aa;
+            border: none;
+            padding: clamp(8px, 2.5vw, 10px) clamp(16px, 5vw, 20px);
+            border-radius: 40px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: clamp(13px, 4vw, 14px);
+        }
+
+        .btn-pink:active {
+            transform: scale(0.96);
+        }
+
+        /* Hover effect untuk desktop */
+        @media (hover: hover) {
+            .rsvp-btn:hover {
+                transform: scale(1.02);
+                box-shadow: 0 8px 20px rgba(255,51,136,0.4);
+            }
+            .btn-pink:hover {
+                transform: scale(1.05);
+            }
+        }
+
+        /* Landscape mode optimization */
+        @media (max-width: 800px) and (orientation: landscape) {
+            body {
+                padding: 10px;
+            }
+            .envelope-top {
+                height: 100px;
+            }
+            .card-body {
+                padding: 15px 20px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="bg-deco" id="bgDeco"></div>
+
+<div class="main-container">
+    <!-- ENVELOPE - PERFECTLY CENTERED -->
+    <div class="envelope-wrapper" id="envelopeWrapper">
+        <div class="envelope" id="envelope">
+            <div class="envelope-top"></div>
+            <div class="envelope-body">
+                <i class="fas fa-envelope-open-text"></i>
+                <h2>You're Invited!</h2>
+                <p>✨ A Special Birthday Celebration ✨</p>
+                <div class="open-hint">
+                    <i class="fas fa-hand-pointer"></i> Tap to Open
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- INVITATION CARD -->
+    <div class="invitation-card" id="invitationCard">
+        <div class="card-header">
+            <i class="fas fa-birthday-cake"></i>
+            <h1>Birthday Party!</h1>
+            <p>You are warmly invited</p>
+        </div>
+        <div class="age-badge">
+            🎀 17st Birthday 🎀
+        </div>
+        <div class="card-body" style="padding: 20px 20px 30px;">
+            <div style="text-align: center; margin-bottom: 10px;">
+                <span style="font-family: 'Dancing Script'; font-size: clamp(28px, 8vw, 34px); color:#ff3388;">Alena Lakira</span>
+                <p style="color:#a14d6e; margin-top: 5px; font-size: clamp(12px, 3.5vw, 14px);">Would love to celebrate this special moment with you</p>
+            </div>
+
+            <!-- Info Grid -->
+            <div class="info-grid">
+                <div class="info-row">
+                    <div class="info-icon"><i class="fas fa-calendar-week"></i></div>
+                    <div class="info-detail">
+                        <div class="info-label">DATE & DAY</div>
+                        <div class="info-value">Wednesday, May 26, 2027</div>
+                    </div>
+                </div>
+                <div class="info-row">
+                    <div class="info-icon"><i class="fas fa-clock"></i></div>
+                    <div class="info-detail">
+                        <div class="info-label">EVENT TIME</div>
+                        <div class="info-value">7:30 PM - 11:00 PM</div>
+                    </div>
+                </div>
+                <div class="info-row">
+                    <div class="info-icon"><i class="fas fa-map-pin"></i></div>
+                    <div class="info-detail">
+                        <div class="info-label">LOCATION</div>
+                        <div class="info-value">Grand City Hall</div>
+                    </div>
+                </div>
+                <div class="info-row">
+                    <div class="info-icon"><i class="fas fa-vest"></i></div>
+                    <div class="info-detail">
+                        <div class="info-label">DRESS CODE</div>
+                        <div class="info-value">
+                            <span class="dresscode-badge"><i class="fas fa-tshirt"></i> Pink Elegant</span> 
+                            <span class="dresscode-badge"><i class="fas fa-heart"></i> Casual Chic</span>
+                            <div style="font-size: clamp(10px, 3vw, 12px); margin-top: 5px;">(touch of pink / pink accessories)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RSVP Button -->
+            <button class="rsvp-btn" id="rsvpButton"><i class="fas fa-envelope"></i> RSVP Now</button>
+
+            <!-- Countdown -->
+            <div class="countdown-box">
+                <div><i class="fas fa-hourglass-half"></i> Countdown to the Big Day</div>
+                <div class="timer" id="timer">
+                    <div class="timer-block">
+                        <div class="timer-num" id="days">00</div>
+                        <div class="timer-label">Days</div>
+                    </div>
+                    <div class="timer-block">
+                        <div class="timer-num" id="hours">00</div>
+                        <div class="timer-label">Hours</div>
+                    </div>
+                    <div class="timer-block">
+                        <div class="timer-num" id="minutes">00</div>
+                        <div class="timer-label">Mins</div>
+                    </div>
+                    <div class="timer-block">
+                        <div class="timer-num" id="seconds">00</div>
+                        <div class="timer-label">Secs</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Simple Note -->
+            <div class="note-text">
+                <i class="fas fa-gift"></i> Please confirm your attendance by May 26, 2027
+            </div>
+        </div>
+        <div class="card-footer">
+            <i class="fas fa-heart" style="color:#ff4d8c;"></i> We can't wait to celebrate with you! <i class="fas fa-heart" style="color:#ff4d8c;"></i>
+        </div>
+    </div>
+</div>
+
+<!-- RSVP Modal -->
+<div id="rsvpModal" class="modal">
+    <div class="modal-card">
+        <i class="fas fa-smile-wink"></i>
+        <h3>RSVP Form</h3>
+        <p style="color:#b34180;">Please enter your name</p>
+        <input type="text" id="guestName" placeholder="Your full name" autocomplete="off">
+        <div class="btn-group">
+            <button id="confirmHadir" class="btn-pink"><i class="fas fa-check"></i> Will Attend</button>
+            <button id="confirmTidak" class="btn-pink" style="background:#c97a9a;"><i class="fas fa-times"></i> Can't Attend</button>
+        </div>
+    </div>
+</div>
+
+<!-- Confirmation Modal -->
+<div id="successModal" class="modal">
+    <div class="modal-card">
+        <i class="fas fa-heart"></i>
+        <h3>Thank You!</h3>
+        <p id="successMsg">Confirmation received. See you at the party! 💗</p>
+        <button id="closeSuccess" class="btn-pink">Close</button>
+    </div>
+</div>
+
+<script>
+    // === Floating Balloons ===
+    const bgDeco = document.getElementById('bgDeco');
+    function addBalloon() {
+        const balloon = document.createElement('div');
+        balloon.classList.add('balloon');
+        const icons = ['🎈', '🎀', '🌸', '💖', '🦄', '✨', '💗', '🎂'];
+        balloon.textContent = icons[Math.floor(Math.random() * icons.length)];
+        balloon.style.left = Math.random() * 100 + '%';
+        balloon.style.fontSize = (Math.random() * 20 + 20) + 'px';
+        balloon.style.animationDuration = Math.random() * 5 + 6 + 's';
+        balloon.style.animationDelay = Math.random() * 5 + 's';
+        bgDeco.appendChild(balloon);
+        setTimeout(() => balloon.remove(), 11000);
+    }
+    setInterval(addBalloon, 1800);
+    for(let i=0;i<6;i++) setTimeout(addBalloon, i*400);
+    
+    // === Open Envelope ===
+    const envelopeWrapper = document.getElementById('envelopeWrapper');
+    const invitationCard = document.getElementById('invitationCard');
+    
+    envelopeWrapper.addEventListener('click', () => {
+        envelopeWrapper.classList.add('hide-envelope');
+        invitationCard.classList.add('active');
+        for(let i=0;i<6;i++) setTimeout(addBalloon, i*100);
+    });
+    
+    // === COUNTDOWN untuk May 26, 2027, 6:30 PM WIB (UTC+7) ===
+    function getTarget() {
+        // 26 Mei 2027 pukul 18:30 WIB (UTC+7)
+        return new Date('2027-05-26T18:30:00+07:00');
+    }
+    
+    function updateCountdown() {
+        const target = getTarget();
+        const now = new Date();
+        const diff = target - now;
+        
+        if (diff <= 0) {
+            document.getElementById('days').innerText = '00';
+            document.getElementById('hours').innerText = '00';
+            document.getElementById('minutes').innerText = '00';
+            document.getElementById('seconds').innerText = '00';
+            return;
+        }
+        
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (86400000)) / 3600000);
+        const minutes = Math.floor((diff % 3600000) / 60000);
+        const seconds = Math.floor((diff % 60000) / 1000);
+        
+        document.getElementById('days').innerText = days < 10 ? '0' + days : days;
+        document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
+        document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+        document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+    }
+    
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+    
+    // === RSVP Logic ===
+    const rsvpBtn = document.getElementById('rsvpButton');
+    const modalRsvp = document.getElementById('rsvpModal');
+    const successModal = document.getElementById('successModal');
+    const guestNameInput = document.getElementById('guestName');
+    const confirmHadir = document.getElementById('confirmHadir');
+    const confirmTidak = document.getElementById('confirmTidak');
+    const closeSuccess = document.getElementById('closeSuccess');
+    const successMsgSpan = document.getElementById('successMsg');
+    
+    rsvpBtn.addEventListener('click', () => modalRsvp.style.display = 'flex');
+    
+    function showResponse(name, status) {
+        if(status === 'hadir') {
+            successMsgSpan.innerText = `Hi ${name}, thank you! We can't wait to celebrate with you on May 26, 2027 ✨🎂`;
+        } else {
+            successMsgSpan.innerText = `Oh ${name}, so sad to miss you. Thanks for letting us know 🌸`;
+        }
+        successModal.style.display = 'flex';
+        modalRsvp.style.display = 'none';
+    }
+    
+    confirmHadir.addEventListener('click', () => {
+        let name = guestNameInput.value.trim();
+        if(name === "") {
+            alert("Please enter your name first 🤗");
+            return;
+        }
+        showResponse(name, 'hadir');
+    });
+    
+    confirmTidak.addEventListener('click', () => {
+        let name = guestNameInput.value.trim();
+        if(name === "") name = "Friend";
+        showResponse(name, 'tidak');
+    });
+    
+    closeSuccess.addEventListener('click', () => successModal.style.display = 'none');
+    
+    // Tutup modal klik di luar
+    window.onclick = (e) => {
+        if(e.target === modalRsvp) modalRsvp.style.display = 'none';
+        if(e.target === successModal) successModal.style.display = 'none';
+    };
+    
+    // Touch friendly untuk mobile
+    const style = document.createElement('style');
+    style.textContent = `
+        @media (max-width: 768px) {
+            .rsvp-btn:active { transform: scale(0.97); }
+            .envelope-wrapper:active { transform: scale(0.98); }
+        }
+    `;
+    document.head.appendChild(style);
+</script>
+</body>
+</html>
